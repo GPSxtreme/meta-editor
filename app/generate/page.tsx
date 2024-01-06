@@ -1,27 +1,24 @@
 "use client";
 import { useAction } from "next-safe-action/hooks";
 import { FormEvent, useEffect } from "react";
-import { GenerateMetatagsInput, generateMetatags } from "./actions";
+import {
+  GenerateMetatagsInput,
+  RobotInput,
+  SettingsInput,
+  generateMetatags,
+} from "./actions";
 
 export default function MetaForm() {
   const { execute, status, result } = useAction(generateMetatags);
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const data = Object.fromEntries(
-      formData.entries()
-    ) as GenerateMetatagsInput;
-    execute(data);
+    // TODO: get settings data
+    // TODO: get robots data
+    // TODO: get site & page data
+    // TODO: execute data
+    //execute(data);
   };
-
-  useEffect(() => {
-    const session = {
-      user: {
-        name: "prudhvi",
-      },
-    };
-    document.cookie = `session=${JSON.stringify(session)}`;
-  }, []);
 
   return (
     <>
