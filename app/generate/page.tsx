@@ -15,7 +15,7 @@ import { useRouter } from "next/navigation";
 export default function MetaForm() {
   const { execute, status, result } = useAction(generateMetatags, {
     onSuccess: (data)=>{
-      setOutput(data.data as string);
+      setOutput(data as string);
       router.push("/generate/success");
     }
   });
@@ -108,7 +108,7 @@ export default function MetaForm() {
                 <div key={index} className="mb-4 flex flex-col gap-2">
                   {input.type != "color" ? (
                     <>
-                      <label htmlFor={input.name}>{input.label}</label>
+                      <label htmlFor={input.name}>{`${input.required && "*"}${input.label}`}</label>
                       <input
                         key={input.key}
                         type={input.type}
