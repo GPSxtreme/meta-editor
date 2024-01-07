@@ -19,13 +19,13 @@ export default function MetaForm() {
 
   const textInputStyle =
     "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-violet-500 focus:border-violet-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-violet-500 dark:focus:border-violet-500";
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     let data = Object.fromEntries(
       Array.from(formData.entries()).filter(([_, value]) => value != "")
     ) as Partial<GenerateMetatagsInput>;
-    execute(data as GenerateMetatagsInput);
+    await execute(data as GenerateMetatagsInput);
     if (status === "hasSucceeded" && result.data != null) {
       setOutput(result.data as string);
       router.push("/generate/success");
@@ -106,32 +106,18 @@ export default function MetaForm() {
               {projectMetaData.map((input, index) => (
                 <div key={index} className="mb-4 flex flex-col gap-2">
                   {input.type != "color" ? (
-                    input.required ? (
-                      <>
-                        <label htmlFor={input.name}>*{input.label}</label>
-                        <input
-                          key={input.key}
-                          type={input.type}
-                          name={input.name}
-                          id={input.id}
-                          placeholder={input.placeholder}
-                          className={textInputStyle}
-                          required
-                        />
-                      </>
-                    ) : (
-                      <>
-                        <label htmlFor={input.name}>{input.label}</label>
-                        <input
-                          key={input.key}
-                          type={input.type}
-                          name={input.name}
-                          id={input.id}
-                          placeholder={input.placeholder}
-                          className={textInputStyle}
-                        />
-                      </>
-                    )
+                    <>
+                      <label htmlFor={input.name}>{input.label}</label>
+                      <input
+                        key={input.key}
+                        type={input.type}
+                        name={input.name}
+                        id={input.id}
+                        placeholder={input.placeholder}
+                        className={textInputStyle}
+                        required={input.required}
+                      />
+                    </>
                   ) : (
                     <div className="flex flex-row">
                       <input
