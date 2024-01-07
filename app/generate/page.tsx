@@ -15,7 +15,7 @@ import { useRouter } from "next/navigation";
 export default function MetaForm() {
   const { execute, status, result } = useAction(generateMetatags, {
     onSuccess: (data)=>{
-      setOutput(result.data as string);
+      setOutput(data.data as string);
       router.push("/generate/success");
     }
   });
