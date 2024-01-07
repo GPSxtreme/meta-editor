@@ -13,7 +13,12 @@ import { useGeneratedOutput } from "../state/generatedOutput";
 import { useRouter } from "next/navigation";
 
 export default function MetaForm() {
-  const { execute, status, result } = useAction(generateMetatags);
+  const { execute, status, result } = useAction(generateMetatags, {
+    onSuccess: (data)=>{
+      setOutput(result.data as string);
+      router.push("/generate/success");
+    }
+  });
   const setOutput = useGeneratedOutput((state) => state.setOutput);
   const router = useRouter();
 
@@ -25,11 +30,7 @@ export default function MetaForm() {
     let data = Object.fromEntries(
       Array.from(formData.entries()).filter(([_, value]) => value != "")
     ) as Partial<GenerateMetatagsInput>;
-    await execute(data as GenerateMetatagsInput);
-    if (status === "hasSucceeded" && result.data != null) {
-      setOutput(result.data as string);
-      router.push("/generate/success");
-    }
+     execute(data as GenerateMetatagsInput);
   };
   return (
     <>
