@@ -2,6 +2,7 @@
 import { useAction } from "next-safe-action/hooks";
 import { FormEvent } from "react";
 import { GenerateMetatagsInput, generateMetatags } from "./actions";
+import { ArrowPathIcon } from "@heroicons/react/24/outline";
 import {
   pageMetaData,
   projectMetaData,
@@ -201,9 +202,16 @@ export default function MetaForm() {
           <button
             type="submit"
             value="Generate"
-            className="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
+            className="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900 flex items-center justify-center"
+            disabled={status === "executing"}
           >
-            Generate
+            {status === "executing" ? (
+              <div className="m-auto">
+                <ArrowPathIcon className="h-5 w-5 animate-spin" />
+              </div>
+            ) : (
+              "Generate"
+            )}
           </button>
         </form>
       </div>
