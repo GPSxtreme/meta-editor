@@ -9,6 +9,7 @@ import { CopyBlock, atomOneLight, dracula } from "react-code-blocks";
 import { generateHtmlFileContent } from "../../lib/utils";
 import { saveAs } from "file-saver";
 import UploadFileComponent from "@/app/ui/components/uploadHtmlFile";
+
 const Page = () => {
   const output = useGeneratedOutput((state) => state.output);
   const router = useRouter();
