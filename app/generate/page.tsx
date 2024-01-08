@@ -108,7 +108,7 @@ export default function MetaForm() {
                 <div key={index} className="mb-4 flex flex-col gap-2">
                   {input.type != "color" ? (
                     <>
-                      <label htmlFor={input.name}>{`${input.required && "*"}${input.label}`}</label>
+                      <label htmlFor={input.name}>{`${input.required ? "*" : ""}${input.label}`}</label>
                       <input
                         key={input.key}
                         type={input.type}
