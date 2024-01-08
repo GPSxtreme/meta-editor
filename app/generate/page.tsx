@@ -120,14 +120,14 @@ export default function MetaForm() {
                       />
                     </>
                   ) : (
-                    <div className="flex flex-row">
+                    <div className="flex flex-row items-center gap-3">
                       <input
                         key={input.key}
                         type={input.type}
                         name={input.name}
                         id={input.id}
                         placeholder={input.placeholder}
-                        className="mr-3 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-violet-500 focus:border-violet-500 block w-1/12 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-violet-500 dark:focus:border-violet-500"
+                        className="p-1 h-10 w-14 block bg-white border border-gray-200 cursor-pointer w-10 rounded-lg disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700"
                       />
                       <label
                         htmlFor={input.id}
