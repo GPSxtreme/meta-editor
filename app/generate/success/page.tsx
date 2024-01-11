@@ -6,9 +6,10 @@ import { useTheme } from "next-themes";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { CopyBlock, atomOneLight, dracula } from "react-code-blocks";
-import { generateHtmlFileContent } from "../../lib/utils";
+import { generateHtmlFileContent } from "@/lib/utils";
 import { saveAs } from "file-saver";
-import UploadFileComponent from "@/app/ui/components/uploadHtmlFile";
+import UploadFileComponent from "@/components/uploadHtmlFile";
+import { Button } from "@/components/ui/button";
 
 const Page = () => {
   const output = useGeneratedOutput((state) => state.output);
@@ -18,10 +19,6 @@ const Page = () => {
     if (output == null) router.push("/generate");
   }, [output, router]);
 
-  /**
-   * Generates a file and downloads it to the user's system.
-   * @return {void}
-   */
   function generateFile(): void {
     const result = generateHtmlFileContent(output!);
     const file = new Blob([result], { type: "text/html" });
@@ -37,7 +34,7 @@ const Page = () => {
         <code>{String(" <head>...</head> ")}</code>
         tag in your <code>index.html</code>
       </p>
-      <div className="">
+      <div>
         <CopyBlock
           text={output!}
           language="html"
@@ -45,6 +42,7 @@ const Page = () => {
           theme={theme === "dark" ? dracula : atomOneLight}
           customStyle={{
             padding: "1rem",
+            overflow: "auto",
           }}
         />
       </div>
@@ -58,13 +56,12 @@ const Page = () => {
           Too complex to do it yourself? download a injected
           <code> index.html</code> file with the generated tags.
         </p>
-        <button
-          type="button"
+        <Button
           onClick={generateFile}
-          className="inline-flex max-w-32 flex-row gap-2 items-center bg-violet-800 text-white p-3 hover:bg-violet-700 rounded-sm focus:outline-2 focus:outline-violet-400"
+          className="inline-flex max-w-32 gap-2 items-center"
         >
           Download {<ArrowDownTrayIcon className="h-4 w-4" />}
-        </button>
+        </Button>
       </div>
       <hr className="my-2 border-[#E5E7EB] dark:border-[#90909084]" />
       <div className="flex flex-col gap-4">
