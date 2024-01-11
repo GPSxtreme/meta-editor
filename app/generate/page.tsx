@@ -8,9 +8,11 @@ import {
   projectMetaData,
   robotCheckboxes,
   settingsCheckboxes,
-} from "../lib/data";
+} from "@/lib/data.js";
 import { useGeneratedOutput } from "../state/generatedOutput";
 import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 export default function MetaForm() {
   const { execute, status, result } = useAction(generateMetatags, {
@@ -22,8 +24,6 @@ export default function MetaForm() {
   const setOutput = useGeneratedOutput((state) => state.setOutput);
   const router = useRouter();
 
-  const textInputStyle =
-    "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-violet-500 focus:border-violet-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-violet-500 dark:focus:border-violet-500";
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -109,13 +109,12 @@ export default function MetaForm() {
                   {input.type != "color" ? (
                     <>
                       <label htmlFor={input.name}>{`${input.required ? "*" : ""}${input.label}`}</label>
-                      <input
+                      <Input
                         key={input.key}
                         type={input.type}
                         name={input.name}
                         id={input.id}
                         placeholder={input.placeholder}
-                        className={textInputStyle}
                         required={input.required}
                       />
                     </>
@@ -158,26 +157,24 @@ export default function MetaForm() {
                   {input.required ? (
                     <>
                       <label htmlFor={input.name}>*{input.label}</label>
-                      <input
+                      <Input
                         key={input.key}
                         type={input.type}
                         name={input.name}
                         id={input.id}
                         placeholder={input.placeholder}
-                        className={textInputStyle}
                         required
                       />
                     </>
                   ) : (
                     <>
                       <label htmlFor={input.name}>{input.label}</label>
-                      <input
+                      <Input
                         key={input.key}
                         type={input.type}
                         name={input.name}
                         id={input.id}
                         placeholder={input.placeholder}
-                        className={textInputStyle}
                       />
                     </>
                   )}
@@ -186,10 +183,9 @@ export default function MetaForm() {
             </div>
           </div>
 
-          <button
+          <Button
             type="submit"
             value="Generate"
-            className="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900 flex items-center justify-center"
             disabled={status === "executing"}
           >
             {status === "executing" ? (
@@ -199,7 +195,7 @@ export default function MetaForm() {
             ) : (
               "Generate"
             )}
-          </button>
+          </Button>
         </form>
       </div>
     </>
