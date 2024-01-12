@@ -1,7 +1,7 @@
 "use server";
 
 import { z } from "zod";
-import { action } from "@/lib/safe-action";
+import { action } from "@/app/lib/safe-action";
 import { metapatcher } from "metapatcher";
 
 const dataSchema = z.object({
