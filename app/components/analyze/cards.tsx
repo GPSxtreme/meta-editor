@@ -1,6 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 import { UrlMetadata } from "@/app/analyze/actions";
-import { EllipsisHorizontalIcon } from "@heroicons/react/24/outline";
+import {
+	EllipsisHorizontalIcon,
+	ExclamationCircleIcon,
+} from "@heroicons/react/24/outline";
 
 // Helper function to resolve favicon URL
 const getFaviconUrl = (faviconHref: string, baseUrl: string) => {
@@ -57,18 +60,19 @@ export const TwitterCard = ({ metaData }: { metaData: UrlMetadata }) => {
 		metaData["twitter:description"] ||
 		metaData.description ||
 		"Description Not Found";
-	const image =
-		metaData["twitter:image"] || metaData.image || "Image Not Found";
+	const image: string | null =
+		metaData["twitter:image"] || metaData.image || null;
 	const imageAlt =
 		metaData["twitter:image:alt"] || "Image Description Not Available";
 	const url = metaData["og:url"] || metaData.url || "URL Not Found";
 
 	return (
 		<div className="max-w-md mx-auto border border-gray-300 rounded-lg overflow-hidden hover:shadow-lg transition-shadow dark:border-gray-700">
-			{image && (
+			{image !== null ? (
 				<img src={image} alt={imageAlt} className="w-full h-48 object-cover" />
+			) : (
+				<ExclamationCircleIcon className="m-12 w-12 h-12 mx-auto text-gray-400" />
 			)}
-
 			<div className="p-4 bg-white dark:bg-gray-800">
 				<h2 className="text-lg text-gray-900 font-semibold dark:text-gray-100">
 					{title}
@@ -97,12 +101,19 @@ export const FacebookCard = ({ metaData }: { metaData: UrlMetadata }) => {
 		metaData["og:description"] ||
 		metaData.description ||
 		"Description Not Found";
-	const image = metaData["og:image"] || metaData.image || "Image Not Found";
+	const image: string | null = metaData["og:image"] || metaData.image || null;
+	//alt image
 
 	return (
 		<div className="max-w-md mx-auto border border-gray-300 rounded-lg overflow-hidden shadow-md dark:border-gray-700">
-			{image && (
-				<img src={image} alt={title} className="w-full h-48 object-cover" />
+			{image !== null ? (
+				<img
+					src={image}
+					alt="description"
+					className="w-full h-48 object-cover"
+				/>
+			) : (
+				<ExclamationCircleIcon className="m-12 w-12 h-12 mx-auto text-gray-400" />
 			)}
 			<div className="p-4 bg-white dark:bg-gray-800">
 				<div className="text-sm text-blue-600 dark:text-blue-400">{domain}</div>
@@ -121,17 +132,19 @@ export const LinkedinCard = ({ metaData }: { metaData: UrlMetadata }) => {
 	const title = metaData["og:title"] || metaData.title || "Title Not Found";
 	const url = metaData["og:url"] || metaData.url || "";
 	const domain = url ? new URL(url).hostname : "URL Not Found";
-	const image = metaData["og:image"] || metaData.image || "Image Not Found";
+	const image: string | null = metaData["og:image"] || metaData.image || null;
 
 	return (
 		<div className="max-w-md mx-auto border border-gray-300 rounded-lg overflow-hidden shadow-lg dark:border-gray-700">
-			{image && (
+			{image !== null ? (
 				<img
 					src={image}
 					alt={title}
 					className="w-full object-cover"
 					style={{ height: "200px" }}
 				/>
+			) : (
+				<ExclamationCircleIcon className="m-12 w-12 h-12 mx-auto text-gray-400" />
 			)}
 			<div className="p-4 bg-white dark:bg-gray-800">
 				<h2 className="text-lg text-gray-900 font-semibold dark:text-white">
@@ -145,17 +158,19 @@ export const LinkedinCard = ({ metaData }: { metaData: UrlMetadata }) => {
 
 export const PinterestCard = ({ metaData }: { metaData: UrlMetadata }) => {
 	const title = metaData["og:title"] || metaData.title || "Title Not Found";
-	const image = metaData["og:image"] || metaData.image || "Image Not Found";
+	const image: string | null = metaData["og:image"] || metaData.image || null;
 
 	return (
 		<div className="max-w-sm mx-auto overflow-hidden">
-			{image && (
+			{image !== null ? (
 				<img
 					src={image}
 					alt={title}
 					className="w-full object-cover rounded-xl"
 					style={{ height: "200px" }}
 				/>
+			) : (
+				<ExclamationCircleIcon className="m-12 w-12 h-12 mx-auto text-gray-400" />
 			)}
 			<div className="p-2 flex items-center justify-between">
 				<h2 className="text-md text-gray-900 font-semibold dark:text-white">
@@ -174,7 +189,7 @@ export const SlackCard = ({ metaData }: { metaData: UrlMetadata }) => {
 		metaData["og:description"] ||
 		metaData.description ||
 		"Description Not Found";
-	const image = metaData["og:image"] || metaData.image || "Image Not Found";
+	const image: string | null = metaData["og:image"] || metaData.image || null;
 	const favicon =
 		metaData.favicons?.length > 0
 			? getFaviconUrl(metaData.favicons[0].href, metaData.url)
@@ -198,13 +213,15 @@ export const SlackCard = ({ metaData }: { metaData: UrlMetadata }) => {
 					{description}
 				</p>
 			</div>
-			{image && (
+			{image !== null ? (
 				<img
 					src={image}
 					alt={title}
 					className="w-full object-cover rounded-b-lg dark:opacity-90"
 					style={{ height: "150px" }}
 				/>
+			) : (
+				<ExclamationCircleIcon className="m-12 w-12 h-12 mx-auto text-gray-400" />
 			)}
 		</div>
 	);
