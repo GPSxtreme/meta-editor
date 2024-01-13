@@ -119,15 +119,14 @@ export default function AnalyzeUrlPage() {
 							Copy the HTML meta tags for your site. Insert these tags in your{" "}
 							{"site's"} head section for improved social sharing and SEO.
 						</p>
-						<SyntaxHighlighter
-							language="html"
-							style={theme === "dark" ? oneDark : oneLight}
-							customStyle={{
-								maxWidth: "50vw",
-							}}
-						>
-							{extractHeadContent()}
-						</SyntaxHighlighter>
+						<div className="max-w-[95vw] md:max-w-[50vw]">
+							<SyntaxHighlighter
+								language="html"
+								style={theme === "dark" ? oneDark : oneLight}
+							>
+								{extractHeadContent()}
+							</SyntaxHighlighter>
+						</div>
 						<Button className="w-full" onClick={handleCopyToClipboard}>
 							<ClipboardIcon className="h-6 w-6" />
 							copy to clipboard
