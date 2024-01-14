@@ -26,7 +26,7 @@ export const GoogleCard = ({ metaData }: { metaData: UrlMetadata }) => {
 			: "";
 
 	return (
-		<div className="max-w-xl mx-auto p-4 border border-gray-200 rounded-lg hover:shadow-lg transition-shadow dark:border-gray-700 dark:bg-gray-800">
+		<div className="max-w-fit mx-auto p-4 border border-gray-200 rounded-lg hover:shadow-lg transition-shadow dark:border-gray-700 dark:bg-gray-800">
 			<div className="flex items-center space-x-2">
 				{favicon && (
 					<img
@@ -67,7 +67,7 @@ export const TwitterCard = ({ metaData }: { metaData: UrlMetadata }) => {
 	const url = metaData["og:url"] || metaData.url || "URL Not Found";
 
 	return (
-		<div className="max-w-md mx-auto border border-gray-300 rounded-lg overflow-hidden hover:shadow-lg transition-shadow dark:border-gray-700">
+		<div className="max-w-md md:max-w-lg  mx-auto border border-gray-300 rounded-lg overflow-hidden hover:shadow-lg transition-shadow dark:border-gray-700">
 			{image !== null ? (
 				<img src={image} alt={imageAlt} className="w-full h-48 object-cover" />
 			) : (
@@ -137,12 +137,7 @@ export const LinkedinCard = ({ metaData }: { metaData: UrlMetadata }) => {
 	return (
 		<div className="max-w-md mx-auto border border-gray-300 rounded-lg overflow-hidden shadow-lg dark:border-gray-700">
 			{image !== null ? (
-				<img
-					src={image}
-					alt={title}
-					className="w-full object-cover"
-					style={{ height: "200px" }}
-				/>
+				<img src={image} alt={title} className="w-full object-cover" />
 			) : (
 				<ExclamationCircleIcon className="m-12 w-12 h-12 mx-auto text-gray-400" />
 			)}
@@ -167,7 +162,6 @@ export const PinterestCard = ({ metaData }: { metaData: UrlMetadata }) => {
 					src={image}
 					alt={title}
 					className="w-full object-cover rounded-xl"
-					style={{ height: "200px" }}
 				/>
 			) : (
 				<ExclamationCircleIcon className="m-12 w-12 h-12 mx-auto text-gray-400" />
@@ -196,7 +190,7 @@ export const SlackCard = ({ metaData }: { metaData: UrlMetadata }) => {
 			: "";
 
 	return (
-		<div className="max-w-lg mx-auto border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow dark:border-gray-700 dark:bg-gray-800">
+		<div className="max-w-sm md:max-w-md  mx-auto border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow dark:border-gray-700 dark:bg-gray-800">
 			<div className="p-4 dark:text-gray-300">
 				<div className="flex items-center space-x-2">
 					{favicon && <img src={favicon} alt="Favicon" className="w-4 h-4" />}{" "}
@@ -218,7 +212,6 @@ export const SlackCard = ({ metaData }: { metaData: UrlMetadata }) => {
 					src={image}
 					alt={title}
 					className="w-full object-cover rounded-b-lg dark:opacity-90"
-					style={{ height: "150px" }}
 				/>
 			) : (
 				<ExclamationCircleIcon className="m-12 w-12 h-12 mx-auto text-gray-400" />
