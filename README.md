@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+![Meta Editor Banner](https://i.ibb.co/2vfWtwm/banner.png)
+
+# Meta Editor
+
+![Home preview](https://i.ibb.co/f12jCqK/home-preview-dark.png)
+
+Meta Editor is a tool designed to analyze and generate metadata for your website quickly and efficiently. With Meta Editor, you can get insights into how your site's metadata will appear on various platforms and make the necessary adjustments to optimize for search engines and social media platforms.
+
+## Features
+
+- 🚀 **Fast Analysis**: Quickly analyze the metadata of any webpage.
+- ✨ **Metadata Generation**: Easily generate metadata tags for your site.
+- 🤖 **SEO Friendly**: Ensure your website is ready for search engine indexing and ranking.
+- 🔍 **Preview**: Preview how your site's metadata appears on different platforms like Google, Twitter, and Facebook.
+- 🎨 **Customizable**: Customize metadata tags to fit your website's needs.
 
 ## Getting Started
 
-First, run the development server:
+To use Meta Editor, visit [Meta Editor](https://meta-editor.vercel.app) and enter the URL of the website you want to analyze or generate metadata for.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## How to Use
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. Enter the URL of the website in the provided input field.
+2. Click the analyze button to fetch and display the current metadata.
+3. Make modifications as needed and use the tool to generate new metadata tags.
+4. Copy the generated tags and insert them into the `<head>` section of your website's HTML.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Contributing
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Contributions to Meta Editor are welcome! If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement". Don't forget to give the project a star! Thanks again!
 
-## Learn More
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-To learn more about Next.js, take a look at the following resources:
+## License
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Distributed under the MIT License. See `LICENSE` for more information.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Contact
 
-## Deploy on Vercel
+Prudhvi Suraaj - [@prudhvisuraaj](https://prudhvisuraaj.me)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Project Link: [https://github.com/GPSxtreme/meta-editor](https://github.com/GPSxtreme/meta-editor)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Acknowledgments
+
+- [Prudhvi Suraaj](https://prudhvisuraaj.me), for creating and maintaining this project.
