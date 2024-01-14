@@ -32,22 +32,34 @@ export default function AnalyzeUrlPage() {
 	const router = useRouter();
 	const searchParams = useSearchParams();
 	const { toast } = useToast();
-	const [isLoading, setIsLoading] = useState(true);
+	const [isLoading, setIsLoading] = useState(false);
 	const [metaData, setMetaData] = useState<UrlMetadata | null>({});
 	const { theme } = useTheme();
+	const [error, setError] = useState<string | null>(null);
 
 	useEffect(() => {
 		const fetchDataInEffect = async () => {
 			const url = searchParams.get("url")?.trim();
 			if (url?.length && isValidUrl(url)) {
 				setIsLoading(true);
-				const siteMetadata = await fetchSiteMetaData(url);
-				setIsLoading(false);
-				setMetaData(siteMetadata);
+				try {
+					const siteMetadata = await fetchSiteMetaData(url);
+					setMetaData(siteMetadata);
+					setIsLoading(false);
+				} catch (e) {
+					setError(e as string);
+					setIsLoading(false);
+				}
+			} else {
+				setError("Invalid website url provided");
 			}
 		};
 		fetchDataInEffect();
 	}, [searchParams]);
+
+	if (error !== null) {
+		throw new Error(error);
+	}
 
 	const handleUrlSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
@@ -56,34 +68,38 @@ export default function AnalyzeUrlPage() {
 		router.push(`/analyze?url=${url}`);
 	};
 	function extractHeadContent() {
-		// Use the DOMParser API to parse the HTML string
-		const parser = new DOMParser();
-		const doc = parser.parseFromString(
-			(metaData?.responseBody || "") as string,
-			"text/html",
-		);
+		try {
+			// Use the DOMParser API to parse the HTML string
+			const parser = new DOMParser();
+			const doc = parser.parseFromString(
+				(metaData?.responseBody || "") as string,
+				"text/html",
+			);
 
-		// Extract the head element
-		const head = doc.head;
-		// Extract only the meta tags and title tag from the head
-		const metaTags = head.querySelectorAll("meta");
-		const titleTag = head.querySelector("title");
+			// Extract the head element
+			const head = doc.head;
+			// Extract only the meta tags and title tag from the head
+			const metaTags = head.querySelectorAll("meta");
+			const titleTag = head.querySelector("title");
 
-		// Create an array to store the HTML strings of the tags
-		const headContent = [];
+			// Create an array to store the HTML strings of the tags
+			const headContent = [];
 
-		// Add the title tag HTML if it exists
-		if (titleTag) {
-			headContent.push(titleTag.outerHTML);
+			// Add the title tag HTML if it exists
+			if (titleTag) {
+				headContent.push(titleTag.outerHTML);
+			}
+
+			// Add the HTML of each meta tag
+			for (const tag of metaTags) {
+				headContent.push(tag.outerHTML);
+			}
+
+			// Return the extracted HTML as a string
+			return headContent.join("\n");
+		} catch {
+			throw new Error("something went wrong");
 		}
-
-		// Add the HTML of each meta tag
-		for (const tag of metaTags) {
-			headContent.push(tag.outerHTML);
-		}
-
-		// Return the extracted HTML as a string
-		return headContent.join("\n");
 	}
 
 	const handleCopyToClipboard = () => {
