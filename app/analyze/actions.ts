@@ -34,7 +34,7 @@ export const fetchSiteMetaData = async (url: string) => {
     const urlMetaData = await url_metadata(url, options);
     return urlMetaData;
   } catch (e) {
-    throw (e);
+    throw new Error("Failed to fetch site metadata");
   }
 }
 
