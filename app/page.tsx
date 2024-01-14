@@ -13,7 +13,7 @@ import { isValidUrl } from "./lib/helpers/isValidUrl";
 export default function HomePage() {
 	const { theme } = useTheme();
 	const { toast } = useToast();
-	const [url, setUrl] = useState("https://prudhvisuraaj.me");
+	const [url, setUrl] = useState("https://meta-editor.vercel.app/");
 	const router = useRouter();
 
 	function handleSubmitUrl(e: FormEvent<HTMLFormElement>) {
