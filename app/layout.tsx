@@ -8,6 +8,59 @@ import { Toaster } from "@/app/components/ui/toaster";
 export const metadata: Metadata = {
 	title: { default: "Meta editor", template: "%s | Meta editor" },
 	description: "Analyze & generate metadata for your website within seconds 🚀",
+	icons: {
+		shortcut: "/favicon.ico",
+	},
+	robots: {
+		index: true,
+		follow: true,
+		googleBot: {
+			index: true,
+			follow: true,
+			"max-video-preview": -1,
+			"max-image-preview": "large",
+			"max-snippet": -1,
+		},
+	},
+	alternates: {
+		canonical: "/",
+	},
+	creator: "Prudhvi Suraaj",
+	authors: [{ name: "Prudhvi Suraaj", url: "https://prudhvisuraaj.me" }],
+	themeColor: [
+		{ media: "(prefers-color-scheme: light)", color: "#FFFFFF" },
+		{ media: "(prefers-color-scheme: dark)", color: "#000000" },
+	],
+	openGraph: {
+		title: "Meta editor",
+		description:
+			"Analyze & generate metadata for your website within seconds 🚀",
+		url: "https://meta-editor.vercel.app",
+		siteName: "Meta editor",
+		images: [
+			{
+				url: "https://i.ibb.co/2vfWtwm/banner.png",
+				width: 1200,
+				height: 630,
+			},
+		],
+		locale: "en-US",
+		type: "website",
+	},
+	twitter: {
+		card: "summary_large_image",
+		title: "Meta editor",
+		description:
+			"Analyze & generate metadata for your website within seconds 🚀",
+		creator: "Prudhvi Suraaj",
+		images: [
+			{
+				url: "https://i.ibb.co/2vfWtwm/banner.png",
+				width: 1200,
+				height: 630,
+			},
+		],
+	},
 };
 
 export default function RootLayout({
