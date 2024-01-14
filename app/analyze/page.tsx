@@ -143,20 +143,25 @@ export default function AnalyzeUrlPage() {
 							branding.
 						</p>
 						{!!metaData && (
-							<>
-								<p className="text-sm text-gray-500">Google</p>
-								<GoogleCard metaData={metaData} />
-								<p className="text-sm text-gray-500">Twitter</p>
-								<TwitterCard metaData={metaData} />
-								<p className="text-sm text-gray-500">Facebook</p>
-								<FacebookCard metaData={metaData} />
-								<p className="text-sm text-gray-500">LinkedIn</p>
-								<LinkedinCard metaData={metaData} />
-								<p className="text-sm text-gray-500">Pinterest</p>
-								<PinterestCard metaData={metaData} />
-								<p className="text-sm text-gray-500">Slack</p>
-								<SlackCard metaData={metaData} />
-							</>
+							<div className="max-w-[95vw] md:max-w-[50vw] space-y-2">
+								{[
+									[GoogleCard, "Google"],
+									[TwitterCard, "Twitter"],
+									[FacebookCard, "Facebook"],
+									[LinkedinCard, "LinkedIn"],
+									[PinterestCard, "Pinterest"],
+									[SlackCard, "Slack"],
+								].map(([Component, name], index) => (
+									<>
+										<p className="text-sm text-gray-500">{name as string}</p>
+										<Component
+											// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+											key={index}
+											metaData={metaData}
+										/>
+									</>
+								))}
+							</div>
 						)}
 					</div>
 				</div>
