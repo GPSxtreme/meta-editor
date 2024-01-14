@@ -11,6 +11,7 @@ export const metadata: Metadata = {
 	icons: {
 		shortcut: "/favicon.ico",
 	},
+	metadataBase: new URL("https://meta-editor.vercel.app"),
 	robots: {
 		index: true,
 		follow: true,
@@ -27,10 +28,6 @@ export const metadata: Metadata = {
 	},
 	creator: "Prudhvi Suraaj",
 	authors: [{ name: "Prudhvi Suraaj", url: "https://prudhvisuraaj.me" }],
-	themeColor: [
-		{ media: "(prefers-color-scheme: light)", color: "#FFFFFF" },
-		{ media: "(prefers-color-scheme: dark)", color: "#000000" },
-	],
 	openGraph: {
 		title: "Meta editor",
 		description:
