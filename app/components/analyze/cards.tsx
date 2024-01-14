@@ -26,7 +26,7 @@ export const GoogleCard = ({ metaData }: { metaData: UrlMetadata }) => {
 			: "";
 
 	return (
-		<div className="max-w-fit mx-auto p-4 border border-gray-200 rounded-lg hover:shadow-lg transition-shadow dark:border-gray-700 dark:bg-gray-800">
+		<div className="max-w-full mx-auto p-4 border border-gray-200 rounded-lg hover:shadow-lg transition-shadow dark:border-gray-700 dark:bg-gray-800">
 			<div className="flex items-center space-x-2">
 				{favicon && (
 					<img
@@ -94,9 +94,8 @@ export const TwitterCard = ({ metaData }: { metaData: UrlMetadata }) => {
 
 export const FacebookCard = ({ metaData }: { metaData: UrlMetadata }) => {
 	const title = metaData["og:title"] || metaData.title || "Title Not Found";
-	const domain = new URL(
-		(metaData["og:url"] || metaData.url || "") as string,
-	).hostname.toUpperCase();
+	const url = metaData["og:url"] || metaData.url || "";
+	const domain = url ? new URL(url).hostname.toUpperCase() : "URL Not Found";
 	const description =
 		metaData["og:description"] ||
 		metaData.description ||
