@@ -11,7 +11,6 @@ import { Button } from "@/app/components/ui/button";
 import { Input } from "@/app/components/ui/input";
 import { useToast } from "@/app/components/ui/use-toast";
 import {
-	ArrowPathIcon,
 	ArrowRightIcon,
 	CodeBracketIcon,
 	ClipboardIcon,
@@ -27,6 +26,7 @@ import {
 } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { UrlMetadata, fetchSiteMetaData } from "./actions";
 import { isValidUrl } from "../lib/helpers/isValidUrl";
+import AnalyzeSkeleton from "../components/analyze/analyzeSkeleton";
 
 export default function AnalyzeUrlPage() {
 	const router = useRouter();
@@ -45,7 +45,7 @@ export default function AnalyzeUrlPage() {
 				try {
 					const siteMetadata = await fetchSiteMetaData(url);
 					setMetaData(siteMetadata);
-					setIsLoading(false);
+					// setIsLoading(false);
 				} catch (e) {
 					setError(e as string);
 					setIsLoading(false);
@@ -181,11 +181,7 @@ export default function AnalyzeUrlPage() {
 						)}
 					</div>
 				</div>
-			) : (
-				<div className="m-auto">
-					<ArrowPathIcon className="animate-spin h-8 w-8 text-violet-500" />
-				</div>
-			)}
+			) : <AnalyzeSkeleton />}
 		</div>
 	);
 }
