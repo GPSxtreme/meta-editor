@@ -4,7 +4,7 @@ export default function AnalyzeSkeleton() {
   return (
     // Use 'md:flex-row' to arrange children in a row on medium screens and above
     // 'flex-col' will stack the children in a column on small screens by default
-    <div className="flex flex-col md:flex-row gap-4 h-[80vh] w-[90vw] mt-5">
+    <div className="flex flex-col md:flex-row gap-4 h-[calc(80vh - 4rem)] w-[90vw] mt-5">
 
       {/* Code Section */}
       {/* 'md:w-1/2' sets the width to 50% on medium screens and above
