@@ -45,7 +45,7 @@ export default function AnalyzeUrlPage() {
 				try {
 					const siteMetadata = await fetchSiteMetaData(url);
 					setMetaData(siteMetadata);
-					// setIsLoading(false);
+					setIsLoading(false);
 				} catch (e) {
 					setError(e as string);
 					setIsLoading(false);
